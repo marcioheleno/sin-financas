@@ -1,0 +1,18 @@
+{
+    "name": "oicram/sistema-financeiro",
+    "authors": [
+        {
+            "name": "Marcio Heleno",
+            "email": "marcio@marcioheleno.website"
+        }
+    ],
+    "require": {
+        "robmorgan/phinx": "^0.9.1"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "SISFin\\" : "src/"
+        }
+    }
+
+}
