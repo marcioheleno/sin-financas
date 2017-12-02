@@ -1,0 +1,84 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Extrato
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline text-center" action="{{ route('statements.list') }}" method="get">
+
+                        <div class="form-group">
+                            <label for="" class="control-label">Inicio</label>
+                            <input type="text" class="form-control" placeholder="DD/MM/YYYY"
+                                   name="date_start" value="{{ 'now' | date_modify('-1 month') | date('d/m/Y') }}" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label">Fim</label>
+                            <input type="text" class="form-control" placeholder="DD/MM/YYYY"
+                                   name="date_end" value="{{ 'now' | date('d/m/Y') }}" >
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+
+                    </form>
+
+                    <div class="text-center">
+                        <h2>Totais no período</h2>
+
+                        <p>
+                            <strong>Recebidos: </strong>
+                            R$ {{ statements.total_receives | number_format(2, ',', '.') }}
+                        </p>
+
+                        <p>
+                            <strong>Pagos: </strong>
+                            <span class="">R$ {{ statements.total_pays | number_format(2, ',', '.') }}</span>
+                        </p>
+
+                        <p>
+                            <strong>Total: </strong>
+                            R$ {{ (statements.total_receives - statements.total_pays) | number_format(2, ',', '.') }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="list-group">
+                            {% for statement in statements.statements %}
+                                {% set isBillPays = statement.category_name is not null %}
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                        <span class="glyphicon glyphicon-{{ isBillPays ? 'minus' : 'plus' }}"></span>
+                                        {{ statement.date_launch | date('d/m/Y') }} - {{ statement.name }}
+                                    </h4>
+                                    {% if isBillPay %}
+                                        <p class="list-group-item-text">
+                                            {{ statement.category_name }}
+                                        </p>
+                                    {% endif %}
+                                    <h4 class="text-right">
+                                        <span class="label label-{{ isBillPays ? 'danger' : 'success' }}">
+                                            R$ {{ isBillPays ? '-' : '' }}
+                                            {{ statement.value | number_format(2, ',', '.') }}
+                                        </span>
+                                    </h4>
+                                    <span class="clearfix"></span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
