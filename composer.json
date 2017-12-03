@@ -24,10 +24,5 @@
     "require-dev": {
         "fzaninotto/faker": "^1.7",
         "squizlabs/php_codesniffer": "*"
-    },
-    "scripts" : {
-        "post-install-cmd" : [
-            "vendor/bin/phinx migate"
-        ]
     }
 }
