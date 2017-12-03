@@ -16,6 +16,7 @@ use SISFin\Models\BillReceive;
 
 /**
  * Class StatementRepository
+ *
  * @package SISFin\Repository
  */
 class StatementRepository implements StatementRepositoryInterface
@@ -25,13 +26,13 @@ class StatementRepository implements StatementRepositoryInterface
     /**
      * @param string $dateStart
      * @param string $dateEnd
-     * @param int $userId
+     * @param int    $userId
      * @return array
      */
     public function all(string $dateStart, string $dateEnd, int $userId): array
     {
         $billPays = BillPay::query()
-            ->selectRaw('bill_pays.*, category_costs.name as category_name' )
+            ->selectRaw('bill_pays.*, category_costs.name as category_name')
             ->leftJoin('category_costs', 'category_costs.id', '=', 'bill_pays.category_cost_id')
             ->whereBetween('date_launch', [$dateStart, $dateEnd])
             ->where('bill_pays.user_id', $userId)

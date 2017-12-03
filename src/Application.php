@@ -30,6 +30,7 @@ class Application
 
     /**
      * Application constructor.
+     *
      * @param $serviceContainer
      */
     public function __construct(ServiceContainerInterface $serviceContainer)
@@ -47,7 +48,7 @@ class Application
     }
 
     /**
-     * @param string $name
+     * @param string  $name
      * @param $service
      */
     public function addService(string $name, $service): void
@@ -115,7 +116,9 @@ class Application
     {
         $route = $this->service('route');
 
-        /** @var  ServerRequestInterface $request */
+        /**
+        * @var  ServerRequestInterface $request
+        */
         $request = $this->service(RequestInterface::class);
         if (!$route) {
             echo "Page not found";

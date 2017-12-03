@@ -13,14 +13,14 @@ namespace SISFin;
 interface ServiceContainerInterface
 {
     /**
-     * @param string $name
+     * @param string  $name
      * @param $service
      * @return mixed
      */
     public function add(string $name, $service);
 
     /**
-     * @param string $name
+     * @param string   $name
      * @param callable $callable
      * @return mixed
      */

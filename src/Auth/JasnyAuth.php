@@ -25,6 +25,7 @@ class JasnyAuth extends Auth
 
     /**
      * JasnyAuth constructor.
+     *
      * @param RepositoryInterface $repository
      */
     public function __construct(RepositoryInterface $repository)
@@ -35,7 +36,7 @@ class JasnyAuth extends Auth
     /**
      * Fetch a user by ID
      *
-     * @param int|string $id
+     * @param  int|string $id
      * @return User|null
      */
     public function fetchUserById($id)
@@ -46,7 +47,7 @@ class JasnyAuth extends Auth
     /**
      * Fetch a user by username
      *
-     * @param string $username
+     * @param  string $username
      * @return User|null
      */
     public function fetchUserByUsername($username)
