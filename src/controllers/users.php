@@ -34,13 +34,9 @@ $app
     ->post(
         '/users/store', function (ServerRequestInterface $request) use ($app) {
             $data = $request->getParsedBody();
-            var_dump($data);
-            //TODO criptografia do password
-            //        $passwordCript = $data['password'];
-            //        $passwordCript
-            //        $data['password'] = password_hash($data['password']);
-            //        die();
             $repository = $app->service('users.repository');
+            $auth = $app->service('user.repository');
+            $data['password'] = $auth->hashPassword($data['password']);
             $repository->create($data);
             return $app->route('users.list');
         }, 'users.store'
@@ -66,6 +62,9 @@ $app
             $id = $request->getAttribute('id');
             $data = $request->getParsedBody();
             $repository = $app->service('users.repository');
+            if (isset($data['password'])) {
+                unset($data['password']);
+            }
             $repository->update($id, $data);
             return $app->route('users.list');
         }, 'users.update'
