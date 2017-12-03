@@ -13,7 +13,8 @@
         "zendframework/zend-diactoros": "^1.6",
         "twig/twig": "^2.0",
         "illuminate/database": "^5.5",
-        "jasny/auth": "^1.0"
+        "jasny/auth": "^1.0",
+        "vlucas/phpdotenv": "^2.4"
     },
     "autoload" : {
         "psr-4" : {

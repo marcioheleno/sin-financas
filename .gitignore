@@ -2,3 +2,4 @@
 .idea/
 vendor/
 .settings/
+.env.example

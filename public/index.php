@@ -6,6 +6,7 @@
  * Time: 10:20
  */
 
+use Dotenv\Dotenv;
 use Psr\Http\Message\RequestInterface;
 // use Psr\Http\Message\ServerRequestInterface;
 use SISFin\Application;
@@ -18,6 +19,12 @@ use SISFin\ServiceContainer;
 
 
 require_once __DIR__ . "/../vendor/autoload.php";
+
+if (file_exists(__DIR__ . '/../.env')) {
+    $dotenv = new Dotenv(__DIR__ . '/../');
+    $dotenv->overload();
+}
+
 require_once  __DIR__ . "/../src/helpers.php";
 
 $serviceContainer = new ServiceContainer();
