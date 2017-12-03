@@ -2,23 +2,16 @@
 
 
 use Faker\Factory;
+use Faker\Provider\Base;
 use Phinx\Seed\AbstractSeed;
 
 class CategoryCostsSeeder extends AbstractSeed
 {
+
     const NAMESCATEGORY = [
-        'Telefone',
-        'Supermercado',
-        'Água',
-        'Escola',
-        'Cartão',
-        'Luz',
-        'IPVA',
-        'Imposto de Renda',
-        'Gasolina',
-        'Vestuário',
-        'Entretenimento',
-        'Reparos'
+        'Telefone', 'Supermercado', 'Água', 'Escola', 'Cartão', 'Luz', 'IPVA', 'Imposto de Renda',
+        'Gasolina', 'Vestuário', 'Entretenimento', 'Reparos', 'Celular', 'Consorcio', 'Faculdade',
+        'Plano de Saúde', 'Veterinário', 'Livros', 'EletroDomesticos', 'EletroEletronico'
     ];
 
     public function run()
@@ -40,7 +33,7 @@ class CategoryCostsSeeder extends AbstractSeed
 
     // generation category faker
     public function categoryName() {
-        return \Faker\Provider\Base::randomElement(self::NAMESCATEGORY);
+        return Base::randomElement(self::NAMESCATEGORY);
     }
 }
 

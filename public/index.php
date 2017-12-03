@@ -46,6 +46,7 @@ $app->get('/', function (RequestInterface $request) use($app) {
 //    return $response;
 //});
 
+require_once __DIR__ . '/../src/controllers/charts.php';
 require_once __DIR__ . '/../src/controllers/category-costs.php';
 require_once __DIR__ . '/../src/controllers/bill-receives.php';
 require_once __DIR__ . '/../src/controllers/bill-pays.php';

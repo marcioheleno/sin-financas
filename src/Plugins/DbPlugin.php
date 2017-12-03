@@ -15,6 +15,7 @@ use SISFin\Models\BillPay;
 use SISFin\Models\BillReceive;
 use SISFin\Models\CategoryCost;
 use SISFin\Models\User;
+use SISFin\Repository\CategoryCostRepository;
 use SISFin\Repository\RepositoryFactory;
 use SISFin\Repository\StatementRepository;
 use SISFin\ServiceContainerInterface;
@@ -31,8 +32,8 @@ class DbPlugin implements PluginInterface
 
         $container->add('repository.factory', new RepositoryFactory());
 
-        $container->addLazy('category-cost.repository', function (ContainerInterface $container) {
-            return $container->get('repository.factory')->factory(CategoryCost::class);
+        $container->addLazy('category-cost.repository', function () {
+            return new CategoryCostRepository();
         });
 
         $container->addLazy('bill-receive.repository', function (ContainerInterface $container) {
@@ -50,6 +51,8 @@ class DbPlugin implements PluginInterface
         $container->addLazy('statement.repository', function () {
             return new StatementRepository();
         });
+
+
 
 
 
