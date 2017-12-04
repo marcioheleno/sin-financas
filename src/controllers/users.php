@@ -35,8 +35,9 @@ $app
         '/users/store', function (ServerRequestInterface $request) use ($app) {
             $data = $request->getParsedBody();
             $repository = $app->service('users.repository');
-            $auth = $app->service('user.repository');
+            $auth = $app->service('auth');
             $data['password'] = $auth->hashPassword($data['password']);
+//            print_r($data['password']);
             $repository->create($data);
             return $app->route('users.list');
         }, 'users.store'
